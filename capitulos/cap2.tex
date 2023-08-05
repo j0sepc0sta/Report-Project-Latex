@@ -1,0 +1,131 @@
+\chapter{Contexto e Tecnologias/Ferramentas}\label{cap2}
+
+\begin{adjustwidth}{2.5cm}{0.3cm}
+Nunca colocar uma $section$ depois de um $chapter$ por isso, aqui deve-se fazer um breve resumo do que se vai falar ao longo do capítulo (2 - 3 linhas), por exemplo....
+Neste capítulo será abordado formas de incluir figuras, tabelas e equações.
+\end{adjustwidth}
+
+\section{Figuras}
+Nesta secção será abordado como poderá-se colocar um figura num documento $Latex$.\par
+De acordo com \cite{overleaf}, em $Latex$ Básico que para incluir figuras é necessário o pacote $graphicx$, que já está introduzido no ficheiro `` package.text''. Posto isto, ao longo do capítulo é importante referir o significado da figura, como por exemplo ``Na Figura \ref{fig:leon} será ilustrado um exemplo de uma figura''. Em segundo a legenda de uma figura fica  \underline{sempre} depois da figura.
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[scale=0.4]{imagens/lion_large.png}
+    \caption{Exemplo de uma figura.}
+    \label{fig:leon}
+\end{figure}\par 
+Por vezes é necessário colocar 2 figuras simumltaneamente como será ilustrada na figura \ref{fig:leon1}
+\begin{figure}[H]
+    \centering
+    \subfigure[Figura 1]{\label{plot1}
+    \includegraphics[scale=0.4]{imagens/lion_large.png}
+    }\hspace{.5cm}
+    \subfigure[Figura 2]{\label{plot2}
+    \includegraphics[scale=0.4]{imagens/lion_large.png}
+    }
+    \caption{Figuras apresentadas com o pacote $subfigure$.}
+    \label{fig:leon1}
+\end{figure}\par
+Na Figura \ref{fig:leon1} cada sub-figura têm uma sub-legenda, na Figura \ref{fig:_lado_a_lado} será ilustrado duas Figura com apenas uma legenda.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{imagens/lion_large.png} \ \ \ \ \ \ \
+    \includegraphics[scale=0.4]{imagens/lion_large.png}
+    \caption{Exemplo de duas figuras, uma ao lado da outra.}
+    \label{fig:_lado_a_lado}
+\end{figure}
+
+\section{Tabelas}
+Nesta secção será abordado como poderá-se colocar um tabela num documento $Latex$.\par
+Segundo \cite{overleaftables}, uma tabela é definida entre os comandos \verb|\begin{tabular}| e \verb|\end{tabular}|, já seguir será ilustrado um exemplo.\par
+\begin{table}[H]
+    \renewcommand{\arraystretch}{1.5}
+    \centering
+    \caption{Tabela centralizada.}
+    \label{tab1}
+    \begin{tabular}{ccc}
+        \hline
+        Coluna  & Coluna  & Coluna \\
+        \hline
+        a & b & c \\
+        d & e & f \\
+        \hline
+    \end{tabular}
+\end{table}\par
+Após \verb|\begin{tabular}| é colocado, entre \verb|{}|, ccc, o que indica que a tabela terá 3 colunas, todas centralizadas. O número de letras indica o número de colunas e a letra o seu alinhamento: 
+\begin{itemize}
+    \item c para colunas com texto alinhado centralizado;
+    \item l para colunas com texto alinhado à esquerda;
+    \item r para colunas com texto alinhado à direita.
+\end{itemize}\par
+Para indicar uma separação de coluna use-se \verb|&|. Para indicar o número linhas usa-se duas
+barras juntas, \verb|\\|, o que significa quebra de linha. O comando \verb|\hline| é responsável por colocar uma linha horizontal na tabela e o comando \verb|\cline{-}| faz uma linha horizontal somente entre as colunas indicadas. Para inserir linhas verticais usa-se \verb||| entre as letras que indicam o alinhamento da coluna.
+\begin{table}[H]
+    \renewcommand{\arraystretch}{1.5}
+    \centering
+    \caption{Tabela com alinhamento à esquerda.}
+    \label{tab2}
+    \begin{tabular}{|l|cc|}
+    \hline
+    Coluna & Coluna  & Coluna \\
+    \hline \hline
+    A & B & C \\
+    \cline{2-3}
+    D & E & F \\
+    \hline
+    \end{tabular}
+\end{table}\par 
+Se uma coluna receber um texto longo e seja necessário que haja uma quebra de linha dentro da célula, em vez de usar as letras c, l ou r usa-se \verb|p{}|, onde dentro \verb|{}| incluiu-se o tamanho da linha.
+\begin{table}[H]
+    \renewcommand{\arraystretch}{1.5}
+    \centering
+    \caption{Tabela usando $p\{\}$.}
+    \label{tab3}
+    \begin{tabular}{ccp{5cm}}
+    \hline
+    C & C & Coluna de Texto \\
+    \hline
+    A & B & Aqui será digitado um texto grande,
+    mas a largura da célula é fixa em 5 \si{\cm}.\\
+\hline
+\end{tabular}
+\end{table}\par
+É possível tornar as tabelas mais bonitas, para isso é necessário  usar \verb|\usepackage{booktabs}|, ou seja este pacote retira o \verb|\hline| e coloca: 
+\begin{itemize}
+    \item \verb|\toprule|, para a linha superior da tabela;
+    \item \verb|\midrule|, para as linhas no meio da tabela;
+    \item \verb|\bottomrule|, para a linha abaixo da tabela.
+\end{itemize}
+\begin{table}[H]
+    \renewcommand{\arraystretch}{1.15}
+    \centering
+    \caption{Tabela usando o pacote $booktabs$.}
+    \label{tabela3}
+    \begin{tabular}{llr}
+        \toprule
+        \multicolumn{2}{c}{Item} \\
+        \cmidrule(r){1-2}
+        Animal & Description & Price (\$)\\ \midrule
+        Gnat & per gram & 13.65 \\
+        & each & 0.01 \\
+        Gnu & stuffed & 92.50 \\
+        Emu & stuffed & 33.33 \\
+        Armadillo & frozen & 8.99 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+
+\section{Equações}
+Em qualquer fórmula matemática existem constantes e variáveis, o $Latex$ adota como convenção de
+trabalho, modificar a fonte e a apresentação dos elementos em função do seu tipo, constante ou variável, como por exemplo  $p''=max\{f(y),g(x)\}$ \footnote{Sempre que iniciar uma equação é obrigatório ter legenda ``Eq.2.1''.}.
+\begin{equation}
+    f_X(x) = \frac{1}{\sqrt{2 \pi \sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+\end{equation}
+\begin{equation*}
+    f_X(x) = \frac{1}{\sqrt{2 \pi \sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+\end{equation*}
+\begin{center}
+    $f_X(x) = \frac{1}{\sqrt{2 \pi \sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$
+\end{center}\par
+Para mais informações \cite{overleafsimbolos,simbolos}.
