@@ -1,0 +1,191 @@
+\documentclass[11pt,a4paper,twoside]{ipb}
+    %\usepackage{showframe}
+    \input{package.tex}
+     \renewcommand*{\lstlistlistingname}{Lista de Algoritmos}
+    %%%%%%%%%%%%%%%%%%%%%%%%% Dados %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+    \title{T\'{i}tulo do Projeto}
+    \author{Nome completo do Aluno}
+    \supervisor{Professor Doutor Nome do Orientador}
+    \cosupervisor{Engenheiro Nome do Co-Orientador} %nome do tutor da empresa
+    \course{Engenharia Eletrot\'{e}cnica e de Computadores}
+    \courseyear{\ano}
+    %\courseyear{\today}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%% Lista de Símbolos %%%%%%%%%%%%%%%%%%%%%%%%%%%   
+    %\setlength{\glsdescwidth}{15cm}
+    \setlength\glsdescwidth{0.75\hsize}
+    \newglossary[slg]{symbolslist}{syi}{syg}{Nomenclatura} % create and add. symbolslist
+    \glsaddkey{unit}{\glsentrytext{\glslabel}}{\glsentryunit}{\GLsentryunit}{\glsunit}{\Glsunit}{\GLSunit}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%% Print: %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+    \makeglossaries 
+    \input{listas/symbols.tex} %-Lista de Símbolos
+    \loadglsentries{listas/acronym} %-Lista de Acrónimos
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%% Lista de Símbolos %%%%%%%%%%%%%%%%%%%%%%%%%%% 
+    \newglossarystyle{symbunitlong}{
+    \setglossarystyle{long3col}
+    
+    \renewenvironment{theglossary}{% Muda o tipo da tabela
+    \renewcommand{\arraystretch}{1.5}    
+    \begin{longtable}{cp{0.5\glsdescwidth}>{\centering\arraybackslash}p{2cm}}}%
+    {\end{longtable}}%
+    \renewcommand*{\glossaryheader}{\toprule %Muda a 1ª linha da tabela
+    \bfseries S\'{i}mbolo&\bfseries Descri\c{c}\~{a}o&\bfseries{\itshape SI}\\\midrule\endhead }
+    \renewcommand*{\glossentry}[2]{%Muda os itens
+    \glstarget{##1}{\glossentryname{##1}}
+    & \glossentrydesc{##1}%Descricao
+    & \glsunit{##1}  \tabularnewline}
+    }
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    \begin{document}
+        %%%%%%%%%%%%%%%%%%%%%%%% Define color %%%%%%%%%%%%%%%%%%%%%%%%%%%
+        \definecolor{azuel}{rgb}{0.07, 0.04, 0.56}
+        \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+        \definecolor{codegreen}{rgb}{0,0.6,0}
+        \definecolor{mygreen}{RGB}{28,172,0}
+        \definecolor{mylilas}{RGB}{170,55,241}
+        \definecolor{codegray}{rgb}{0.5,0.5,0.5}
+        \definecolor{codepurple}{rgb}{0.58,0,0.82}
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        
+        %%%%%%%%%%%%%%%%%%%%%%%%% Config List %%%%%%%%%%%%%%%%%%%%%%%%%%% 
+        \lstdefinestyle{list1}{backgroundcolor=\color{backcolour},   
+                            commentstyle=\color{codegreen},
+                            %keywordstyle=\footnotesize\color{magenta},
+                            keywordstyle=\footnotesize\color{blue},
+                            numberstyle=\footnotesize\color{black},
+                            stringstyle=\footnotesize\color{codepurple},
+                            basicstyle=\footnotesize,
+                            breakatwhitespace=false,
+                            frame=single,
+                            breaklines=true,                 
+                            keepspaces=true,                 
+                            numbers=left,       
+                            numbersep=10pt,                  
+                            showspaces=false,                
+                            showstringspaces=false,
+                            showtabs=false,                  
+                            tabsize=2,}
+                            
+        \lstdefinestyle{list2}{language=Matlab,% lst
+                                 %basicstyle=color{red},
+                                 backgroundcolor=\color{white},
+                                 breaklines=true,
+                                 breakatwhitespace=false,
+                                 keepspaces=true,
+                                 morekeywords={matlab2tikz},
+                                 showspaces=false, 
+                                 showtabs=false,
+                                 tabsize=2,
+                                 %frame=single,
+                                 keywordstyle={\footnotesize\color{blue}},
+                                 morekeywords=[2]{1}, 
+                                 keywordstyle=[2]{\footnotesize\color{black}},
+                                 identifierstyle={\footnotesize\color{black}},%
+                                 stringstyle={\footnotesize\color{mylilas}},
+                                 commentstyle={\footnotesize\color{mygreen}},
+                                 showstringspaces=false,
+                                 numbers=left,%
+                                 numberstyle={\footnotesize\color{black}},
+                                 numbersep=10pt, 
+                                 emph=[1]{for,end,break},emphstyle=[1]\footnotesize\color{blue}, 
+                                 }
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        \def\ano{\expandafter\YEAR\the\year}\def\YEAR#1#2#3#4{#1#2#3#4} %Coloca ano automatico
+        
+        %%%%%%%%%%%%%%%%%%%%%%%%% Config Equations %%%%%%%%%%%%%%%%%%%%%%%%%%% 
+        \makeatletter % make "@" a letter-type symbol
+            \providecommand\add@text{}
+            \newcommand\addunit[1]{%
+            \gdef\add@text{(\si{#1})\gdef\add@text{}}}
+            \def\tagform@#1{\maketag@@@{(Eq.~#1\unskip\@@italiccorr)}}
+            \renewcommand*{\@biblabel}[1]{\hfill#1.}
+        \makeatother
+        \newtagform{Eq}[\upshape]{\footnotesize\textbf{Eq.~}}{}\usetagform{Eq}
+        \renewcommand\theequation{{\bfseries\footnotesize\thechapter.\bfseries\arabic{equation}}}
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        
+        %%%%%%%%%%%%%%%%%%%%%%%%% Config titles %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+         %\titleformat{\chapter}[hang]{\normalfont\huge\bfseries}{\thechapter.}{0.5cm}{\filright} %\titlespacing{\chapter}{0em}{0.5cm}{1.5cm}   
+        \titleformat{\chapter}[display]{\normalfont\huge\bfseries}{\chaptertitlename~\thechapter.}{1ex}{\filright}
+        \titleformat{\section}[hang]{\normalfont\Large\bfseries}{\thesection.}{1ex}{}
+        \titleformat{\subsection}[hang]{\normalfont\large\bfseries}{\thesubsection.}{1ex}{}
+        \titleformat{\subsubsection}[hang]{\normalfont\bfseries}{}{1ex}{}
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        
+        %%%%%%%%%%%%%%%%%%%%%% Config Cabeçalho %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        \renewcommand{\sectionmark}[1]{\markright{\thesection.~#1}}
+        \renewcommand{\chaptermark}[1]{\markboth{\thechapter.~#1}{}}
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        
+        %%%%%%%%%%%%%%%%%%%% Config Nota Rodapé  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        \newcounter{tempfootnote}
+        \setcounter{footnote}{\value{tempfootnote}}
+        \renewcommand{\thefootnote}{\bfseries\arabic{footnote}}
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        
+        %%%%%%%%%%%%%%%%%%%%%%%%% Config \Ref %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        \let\origref\ref
+        \def\ref#1{\textbf{\origref{#1}}}
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+        \renewcommand{\lstlistingname}{Algoritmo}
+        
+        \beforepreface
+        \pagenumbering{roman}
+        \chapter*{Dedicat\'{o}ria}
+            \markboth{Dedicat\'{o}ria}{}
+            \input{capitulos/dedicatoria}
+        \cleardoublepage
+        \chapter*{Agradecimentos}
+            \markboth{Agradecimentos}{}
+            \input{capitulos/agradecimento}
+        \cleardoublepage    
+        \prefacesection*{Resumo}
+            \markboth{Resumo}{}
+            \input{capitulos/resumo}
+        \cleardoublepage
+        \prefacesection*{Abstract}
+            \markboth{Abstract}{}
+            \input{capitulos/abstract}
+        \cleardoublepage
+        
+        \afterpreface
+        
+       \glsaddall %para colocar todos os gls
+        \cleardoublepage
+        \printglossary[type=\acronymtype,title={Acr\'{o}nimos e Siglas},nonumberlist] % print e edita o titulo
+        \cleardoublepage
+        \printglossary[type=symbolslist,title={Nomenclatura},style=symbunitlong] % print e edita o titulo
+	    \cleardoublepage
+     
+        \bodystart
+                           
+        \input{capitulos/cap1}
+        \cleardoublepage
+        \input{capitulos/cap2}
+        \cleardoublepage
+        \input{capitulos/cap3}
+        \cleardoublepage
+        \input{capitulos/cap4}
+        \cleardoublepage
+        \input{capitulos/cap5}
+        \cleardoublepage
+        \printbibliography 
+        \cleardoublepage
+    
+        \appendix % print anexos
+
+        \pretocmd{\chapter}{\pagenumbering{arabic}
+	                          \renewcommand*{\thepage}{\thechapter.\arabic{page}}
+                           }{}{} 
+        \input{capitulos/anexo1.tex}
+        \cleardoublepage
+        \input{capitulos/anexo2.tex} 
+        \cleardoublepage
+        
+\end{document}

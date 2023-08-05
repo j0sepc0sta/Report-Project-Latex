@@ -1,0 +1,53 @@
+\usepackage{eec}
+\usepackage[portuguese]{babel}%pacote linguagem
+\usepackage{lastpage}%pacote para indicar a ultima pagina do documento
+\usepackage{csquotes}
+\graphicspath{{./images/}}
+\usepackage{listings} % incluir listagens
+\usepackage{url} % typeset URL's
+\usepackage[colorlinks=true,
+            %urlcolor=azuel, %azul escuro
+             urlcolor=blue, %blue
+             linkcolor=black,
+             citecolor=blue, %cor das citações
+             bookmarks=true,
+            pdfstartview=FitH]{hyperref}
+\usepackage{cleveref} 
+\bibliographystyle{plainnat}%estilo da bibliografica
+\usepackage[backend=biber,
+            style=numeric,
+            sorting=ynt,
+            %dashed=false,
+            autolang=other,
+            bibencoding=UTF8,]{biblatex} % config da bibliografia
+\addbibresource{refs.bib} %input da bibliogradia
+\usepackage{lipsum}
+%\usepackage[pdftex]{hyperref}
+\usepackage{tabulary} % pacote para tabelas
+\usepackage{amsmath,amssymb,amsfonts,textcomp} % vários pacotes juntos, utilizados para usar funções e outros símbolos matemáticos
+\usepackage{indentfirst} % indenta todo 1º parágrafo
+\usepackage{float}% força as figuras a ficarem depois do texto.
+\usepackage{placeins}% força as figuras a ficarem depois do texto.
+\FloatBarrier
+\usepackage{subfigure}% pacote para sfubfigures
+\usepackage{multirow} % pacote para utilizar multirow nas tabelas
+\usepackage{afterpage}
+\usepackage{pdfpages} %pacote para incluir pdf no documento
+\usepackage{mathtools} 
+\usepackage{booktabs}
+\usepackage{siunitx} % pacote para incluir as unidade do sistema internacional
+%\usepackage{scrextend}
+\listfiles
+\usepackage{changepage}
+\usepackage{titlesec} %pacote para \titleformat
+\usepackage[font=footnotesize,labelfont=bf]{caption} %config de todos os \caption
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{multicol}
+\usepackage{tzplot}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{groupplots}
+\usepgfplotslibrary{dateplot}
+\usepackage{comment}
+%\usepackage[Bjornstrup]{fncychap}

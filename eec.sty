@@ -1,0 +1,97 @@
+\NeedsTeXFormat{LaTeX2e}
+
+\def\firstreader#1{\gdef\@author{#1}}
+
+\def\coverpage{\renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0.4pt}
+    \thispagestyle{empty}
+    %%%%%%%%%%%%%%%%%%%%%%%%% Print logo  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+    \begin{minipage}{5in}
+	       \vspace{-13ex}
+        \hspace{-4ex}
+	  \includegraphics[width=0.6\columnwidth, keepaspectratio]{logos/logoh.png}\\
+    \end{minipage}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%% Print capa %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+    \begin{center}
+        %\vfill
+        %\includegraphics[scale=0.7]{logos/logo.jpg}\\
+	    \vfill
+        {\huge{\bf \@title}}
+        \vfill
+        {\bf\@author}
+        \vfill
+        Trabalho realizado sob a orienta\c{c}\~{a}o de:\\
+	       {\bf \@supervisor}\\
+        \ifdefined\@cosupervisor {\bf \@cosupervisor}\\ \fi
+        \vfill
+        %Licenciatura em \@course \\
+        \@courseyear
+    \end{center} 
+    \pagebreak
+    \thispagestyle{empty}
+    \cleardoublepage
+    %\renewcommand{\headrulewidth}{0pt}
+    %\renewcommand{\footrulewidth}{0pt}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%% Print contracapa %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\titlep{\thispagestyle{empty}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+    \begin{center}
+        \vfill
+        {\begin{tikzpicture}[remember picture, overlay]
+           \draw[rounded corners=20pt,white]
+            ($(current page.north west) + (1.5cm,-1.5cm)$)
+          rectangle
+           ($(current page.south east) + (-1.5cm,1.5cm)$);
+        \end{tikzpicture}}
+        \vfill
+        {\huge{\bf\@title}}
+        \vfill
+        {\bf Relat\'{o}rio da Unidade Curricular de Projeto \\ Licenciatura em \@course \\ Escola Superior de Tecnologia e Gest\~{a}o de Bragan\c{c}a}\\
+        \vfill
+        {\bf \@author} 
+	    \vfill	    
+        {\bf \@courseyear}
+        \vfill
+    \end{center}
+    \newpage
+    %\thispagestyle{empty}
+    \cleardoublepage    
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%% cabeçalho /rodapé a\cap %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\beforepreface{\pagenumbering{roman}
+                    \pagestyle{fancy}
+                    \renewcommand{\headrulewidth}{0pt}
+                    \renewcommand{\footrulewidth}{0pt}
+                    \fancyfoot[C]{}
+                    \coverpage
+                    \titlep
+                    \renewcommand{\headrulewidth}{0pt}
+                    \renewcommand{\footrulewidth}{0pt}
+                    \fancyhf{}
+                    \pagenumbering{roman}
+                    \renewcommand{\headrulewidth}{0.4pt}
+                    \renewcommand{\footrulewidth}{0.4pt}
+                    \fancyhead[RO]{\nouppercase{\rightmark}}
+                    \fancyhead[LE]{\nouppercase{\leftmark}}
+                    %\fancyhead[LE]{\footnotesize{\leftmark}}
+                    %\fancyhead[RO]{\footnotesize{\rightmark}}
+                    %\fancyhead[C]{\nouppercase{\@title}}
+                    %\fancyhead[C]{\footnotesize{\@title}}
+                    \fancyfoot[LE,RO]{\nouppercase{\thepage}}
+                    %\fancyfoot[LE,RO]{\footnotesize{\thepage}}
+                    \fancypagestyle{plain}{%  the preset of fancyhdr 
+                    \fancyhf{}
+                    % clear all header and footer fields
+                    \fancyfoot[R]{\nouppercase{\thepage}}% except the center
+                    %\fancyfoot[R]{\footnotesize{\thepage}}
+                    \renewcommand{\headrulewidth}{0pt}
+                    \renewcommand{\footrulewidth}{0.4pt} 
+                }}
+                
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\endinput
